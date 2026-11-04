@@ -1,15 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sing_box/sing_box.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await SingBox.instance.initialize(
     const SingBoxOptions(
       android: SingBoxAndroidOptions(
@@ -43,7 +42,6 @@ class _ClaudeVpnHomeState extends State<ClaudeVpnHome> {
   WebViewController? _web;
   StreamSubscription? _statsSub;
   StreamSubscription? _stateSub;
-  SharedPreferences? _prefs;
   bool _pageReady = false;
   bool _busy = false;
 
@@ -54,10 +52,11 @@ class _ClaudeVpnHomeState extends State<ClaudeVpnHome> {
   }
 
   Future<void> _init() async {
-    _prefs = await SharedPreferences.getInstance();
     final controller = WebViewController();
     _web = controller;
     await controller.setJavaScriptMode(JavaScriptMode.unrestricted);
+    await controller.setBackgroundColor(const Color(0xFF050505));
+    await controller.enableZoom(false);
     await controller.addJavaScriptChannel(
       'VpnBridge',
       onMessageReceived: (message) => _onBridge(message.message),
@@ -113,9 +112,6 @@ class _ClaudeVpnHomeState extends State<ClaudeVpnHome> {
       return;
     }
     switch (data['action']) {
-      case 'subscription':
-        await _editSubscription();
-        break;
       case 'connect':
         await _connect();
         break;
@@ -125,113 +121,20 @@ class _ClaudeVpnHomeState extends State<ClaudeVpnHome> {
     }
   }
 
-  Future<void> _editSubscription() async {
-    final controller = TextEditingController(
-      text: _prefs?.getString('subscription_url') ?? '',
-    );
-    final value = await showDialog<String>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Ссылка подписки'),
-        content: TextField(
-          controller: controller,
-          autofocus: true,
-          keyboardType: TextInputType.url,
-          decoration: const InputDecoration(
-            hintText: 'https://…',
-            helperText: 'Ссылка хранится только на этом устройстве.',
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Отмена'),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(context, controller.text.trim()),
-            child: const Text('Сохранить'),
-          ),
-        ],
-      ),
-    );
-    controller.dispose();
-    if (value == null || value.isEmpty) return;
-    await _prefs?.setString('subscription_url', value);
-    _sendState('disconnected', 'Подписка сохранена');
-  }
-
-  Future<String> _downloadSubscription(String value) async {
-    final uri = Uri.tryParse(value.trim());
-    if (uri == null || !uri.hasAuthority ||
-        (uri.scheme != 'https' && uri.scheme != 'http')) {
-      throw const FormatException('Укажите полную ссылку подписки, начинающуюся с https://');
-    }
-
-    final client = HttpClient()
-      ..connectionTimeout = const Duration(seconds: 20)
-      ..autoUncompress = true
-      ..userAgent = 'ClaudeVPN/1.0';
-
-    try {
-      final request = await client.getUrl(uri).timeout(const Duration(seconds: 25));
-      request.headers.set(HttpHeaders.acceptHeader,
-          'text/plain, application/json, application/octet-stream, */*');
-      request.followRedirects = true;
-      final response = await request.close().timeout(const Duration(seconds: 35));
-
-      if (response.statusCode < 200 || response.statusCode >= 300) {
-        await response.drain<void>();
-        throw HttpException('Сервер подписки ответил HTTP ${response.statusCode}');
-      }
-
-      final bytes = await response.fold<List<int>>(
-        <int>[],
-        (all, chunk) {
-          if (all.length + chunk.length > 5 * 1024 * 1024) {
-            throw const FormatException('Файл подписки слишком большой (больше 5 МБ)');
-          }
-          return all..addAll(chunk);
-        },
-      ).timeout(const Duration(seconds: 35));
-
-      final body = utf8.decode(bytes, allowMalformed: true).trim();
-      if (body.isEmpty) {
-        throw const FormatException('Ссылка открылась, но подписка пустая');
-      }
-      final lower = body.toLowerCase();
-      if (lower.startsWith('<!doctype html') || lower.startsWith('<html') ||
-          lower.contains('<title>') && lower.contains('</html>')) {
-        throw const FormatException(
-          'Ссылка вернула HTML-страницу, а не список серверов. Проверьте ссылку подписки.',
-        );
-      }
-      return body;
-    } finally {
-      client.close(force: true);
-    }
-  }
-
+  /// Серверы лежат в assets/servers.json: массив sing-box outbound'ов,
+  /// сконвертированный из исходного Xray-конфига. sing_box сам собирает из
+  /// массива селектор `proxy` с автоматическим urltest (`auto`).
   Future<void> _connect() async {
-    final url = _prefs?.getString('subscription_url')?.trim() ?? '';
-    if (url.isEmpty) {
-      await _editSubscription();
-      return;
-    }
     _busy = true;
-    _sendState('connecting', 'Загрузка подписки…');
+    _sendState('connecting');
     try {
-      final subscription = await _downloadSubscription(url);
-      _sendState('connecting', 'Проверка серверов…');
-      // sing-box parses plain links, multiline subscriptions, Base64 and JSON.
-      // Multiple servers are placed into an automatic URL-test selector.
-      await SingBox.instance.connect(subscription);
+      final servers = await rootBundle.loadString('assets/servers.json');
+      await SingBox.instance.connect(servers);
       _sendState('connected');
     } on SingBoxException catch (e) {
       _sendState('error', e.message);
-    } on TimeoutException {
-      _sendState('error', 'Не удалось загрузить подписку вовремя. Проверьте интернет и повторите попытку.');
     } catch (e) {
-      _sendState('error', e.toString().replaceFirst('Exception: ', ''));
+      _sendState('error', e.toString());
     } finally {
       _busy = false;
     }
@@ -285,5 +188,4 @@ class _ClaudeVpnHomeState extends State<ClaudeVpnHome> {
       body: SafeArea(child: WebViewWidget(controller: _web!)),
     );
   }
-
 }
