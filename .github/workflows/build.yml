@@ -5,7 +5,7 @@ on:
   push:
     branches: [main]
     paths:
-      - '*.zip'
+      - 'app_src/**'
       - '.github/workflows/build.yml'
 
 permissions:
@@ -17,14 +17,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Unpack project zip
-        run: |
-          ZIP=$(ls -1 *.zip | head -n 1)
-          echo "Using $ZIP"
-          mkdir project
-          unzip -q "$ZIP" -d project
-          test -d project/app_src || { echo "app_src not found in zip"; exit 1; }
 
       - name: Set up Java
         uses: actions/setup-java@v4
@@ -41,7 +33,7 @@ jobs:
       - name: Create Android project
         run: |
           flutter create --platforms=android --org com.zephyy --project-name claudevpn build_app
-          cp -R project/app_src/. build_app/
+          cp -R app_src/. build_app/
 
       - name: Set Android minimum SDK
         working-directory: build_app
