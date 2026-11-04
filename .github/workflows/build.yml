@@ -51,6 +51,11 @@ jobs:
           flutter create --platforms=android --org com.zephyy --project-name claudevpn build_app
           cp -R "$SRC"/. build_app/
 
+      - name: Apply app icon and name
+        run: |
+          if [ -d "$SRC/android_res" ]; then cp -R "$SRC"/android_res/. build_app/android/app/src/main/res/; fi
+          sed -i 's/android:label="[^"]*"/android:label="ClaudeVPN"/' build_app/android/app/src/main/AndroidManifest.xml
+
       - name: Set Android minimum SDK
         working-directory: build_app
         run: sed -i 's/minSdk = flutter.minSdkVersion/minSdk = 24/' android/app/build.gradle.kts
