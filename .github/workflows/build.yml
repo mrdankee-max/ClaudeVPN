@@ -1,11 +1,12 @@
-
 name: Build ClaudeVPN APK
 
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
+    branches: [main]
+    paths:
+      - '*.zip'
+      - '.github/workflows/build.yml'
 
 permissions:
   contents: read
@@ -13,39 +14,51 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Java
+      - name: Unpack project zip
+        run: |
+          ZIP=$(ls -1 *.zip | head -n 1)
+          echo "Using $ZIP"
+          mkdir project
+          unzip -q "$ZIP" -d project
+          test -d project/app_src || { echo "app_src not found in zip"; exit 1; }
+
+      - name: Set up Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
 
-      - name: Setup Flutter
+      - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: stable
+          cache: true
 
-      - name: Create Flutter project
+      - name: Create Android project
         run: |
           flutter create --platforms=android --org com.zephyy --project-name claudevpn build_app
+          cp -R project/app_src/. build_app/
 
-      - name: Copy application files
-        run: |
-          cp -R app_src/. build_app/
+      - name: Set Android minimum SDK
+        working-directory: build_app
+        run: sed -i 's/minSdk = flutter.minSdkVersion/minSdk = 24/' android/app/build.gradle.kts
+
+      - name: Get dependencies
+        working-directory: build_app
+        run: flutter pub get
 
       - name: Build APK
         working-directory: build_app
-        run: |
-          sed -i 's/minSdk = flutter.minSdkVersion/minSdk = 24/' android/app/build.gradle.kts
-          flutter pub get
-          flutter build apk --release --target-platform android-arm64
+        run: flutter build apk --release --target-platform android-arm64
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: ClaudeVPN-APK
           path: build_app/build/app/outputs/flutter-apk/app-release.apk
+          if-no-files-found: error
+          retention-days: 14
