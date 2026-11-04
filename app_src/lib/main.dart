@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -159,21 +160,78 @@ class _ClaudeVpnHomeState extends State<ClaudeVpnHome> {
     _sendState('disconnected', 'Подписка сохранена');
   }
 
+  Future<String> _downloadSubscription(String value) async {
+    final uri = Uri.tryParse(value.trim());
+    if (uri == null || !uri.hasAuthority ||
+        (uri.scheme != 'https' && uri.scheme != 'http')) {
+      throw const FormatException('Укажите полную ссылку подписки, начинающуюся с https://');
+    }
+
+    final client = HttpClient()
+      ..connectionTimeout = const Duration(seconds: 20)
+      ..autoUncompress = true
+      ..userAgent = 'ClaudeVPN/1.0';
+
+    try {
+      final request = await client.getUrl(uri).timeout(const Duration(seconds: 25));
+      request.headers.set(HttpHeaders.acceptHeader,
+          'text/plain, application/json, application/octet-stream, */*');
+      request.followRedirects = true;
+      final response = await request.close().timeout(const Duration(seconds: 35));
+
+      if (response.statusCode < 200 || response.statusCode >= 300) {
+        await response.drain<void>();
+        throw HttpException('Сервер подписки ответил HTTP ${response.statusCode}');
+      }
+
+      final bytes = await response.fold<List<int>>(
+        <int>[],
+        (all, chunk) {
+          if (all.length + chunk.length > 5 * 1024 * 1024) {
+            throw const FormatException('Файл подписки слишком большой (больше 5 МБ)');
+          }
+          return all..addAll(chunk);
+        },
+      ).timeout(const Duration(seconds: 35));
+
+      final body = utf8.decode(bytes, allowMalformed: true).trim();
+      if (body.isEmpty) {
+        throw const FormatException('Ссылка открылась, но подписка пустая');
+      }
+      final lower = body.toLowerCase();
+      if (lower.startsWith('<!doctype html') || lower.startsWith('<html') ||
+          lower.contains('<title>') && lower.contains('</html>')) {
+        throw const FormatException(
+          'Ссылка вернула HTML-страницу, а не список серверов. Проверьте ссылку подписки.',
+        );
+      }
+      return body;
+    } finally {
+      client.close(force: true);
+    }
+  }
+
   Future<void> _connect() async {
-    final url = _prefs?.getString('subscription_url') ?? '';
+    final url = _prefs?.getString('subscription_url')?.trim() ?? '';
     if (url.isEmpty) {
       await _editSubscription();
       return;
     }
     _busy = true;
-    _sendState('connecting');
+    _sendState('connecting', 'Загрузка подписки…');
     try {
-      await SingBox.instance.connect(url);
+      final subscription = await _downloadSubscription(url);
+      _sendState('connecting', 'Проверка серверов…');
+      // sing-box parses plain links, multiline subscriptions, Base64 and JSON.
+      // Multiple servers are placed into an automatic URL-test selector.
+      await SingBox.instance.connect(subscription);
       _sendState('connected');
     } on SingBoxException catch (e) {
       _sendState('error', e.message);
+    } on TimeoutException {
+      _sendState('error', 'Не удалось загрузить подписку вовремя. Проверьте интернет и повторите попытку.');
     } catch (e) {
-      _sendState('error', e.toString());
+      _sendState('error', e.toString().replaceFirst('Exception: ', ''));
     } finally {
       _busy = false;
     }
