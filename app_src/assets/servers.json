@@ -1,0 +1,743 @@
+[
+ {
+  "type": "vless",
+  "tag": "srv-1",
+  "server": "45.132.178.177",
+  "server_port": 9872,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "dl.google.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "qq"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "sm3E3hjmT6_Gmg_O9rBz4nfXYrHpnl6-LvcCp6T6_xc",
+    "short_id": "aabb"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-2",
+  "server": "176.108.243.18",
+  "server_port": 9881,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "dl.google.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "qq"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "Dfgu8Ey0M8Hz4gXGZAwQ3H9jLt2HByVsjAOTWiuKDB0"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-3",
+  "server": "45.132.179.96",
+  "server_port": 9892,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "dl.google.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "qq"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "ycPIUcY6ci2yi7YA_OHc20e4gzxEdJTqpmeShxSuHRU",
+    "short_id": "aa"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-4",
+  "server": "45.132.179.96",
+  "server_port": 9889,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "dl.google.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "qq"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "ycPIUcY6ci2yi7YA_OHc20e4gzxEdJTqpmeShxSuHRU"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-5",
+  "server": "45.132.177.60",
+  "server_port": 9882,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "amd.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "qq"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "bnRIb3Er1i-K6NGGByCO9UbGfOvu43ZoiK7ulPd1SzU",
+    "short_id": "aabb"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-6",
+  "server": "82.202.139.215",
+  "server_port": 9881,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "dl.google.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "qq"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "Dfgu8Ey0M8Hz4gXGZAwQ3H9jLt2HByVsjAOTWiuKDB0"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-7",
+  "server": "45.132.179.46",
+  "server_port": 9881,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "dl.google.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "qq"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "Dfgu8Ey0M8Hz4gXGZAwQ3H9jLt2HByVsjAOTWiuKDB0",
+    "short_id": "aabb"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-8",
+  "server": "144.31.15.22",
+  "server_port": 9881,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "dl.google.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "qq"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "Dfgu8Ey0M8Hz4gXGZAwQ3H9jLt2HByVsjAOTWiuKDB0",
+    "short_id": "aa"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-9",
+  "server": "45.132.179.64",
+  "server_port": 9881,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "dl.google.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "qq"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "Dfgu8Ey0M8Hz4gXGZAwQ3H9jLt2HByVsjAOTWiuKDB0",
+    "short_id": "aabbccdd"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-10",
+  "server": "45.132.178.247",
+  "server_port": 9881,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "dl.google.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "qq"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "Dfgu8Ey0M8Hz4gXGZAwQ3H9jLt2HByVsjAOTWiuKDB0",
+    "short_id": "aabbccdd"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-11",
+  "server": "45.132.177.60",
+  "server_port": 9892,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "dl.google.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "qq"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "Dfgu8Ey0M8Hz4gXGZAwQ3H9jLt2HByVsjAOTWiuKDB0",
+    "short_id": "aabb"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-12",
+  "server": "82.202.157.95",
+  "server_port": 9881,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "dl.google.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "qq"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "Dfgu8Ey0M8Hz4gXGZAwQ3H9jLt2HByVsjAOTWiuKDB0",
+    "short_id": "aabbccdd"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-13",
+  "server": "37.230.192.30",
+  "server_port": 9892,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "dl.google.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "qq"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "ycPIUcY6ci2yi7YA_OHc20e4gzxEdJTqpmeShxSuHRU",
+    "short_id": "aabbccdd"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-14",
+  "server": "82.202.142.29",
+  "server_port": 9881,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "dl.google.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "qq"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "Dfgu8Ey0M8Hz4gXGZAwQ3H9jLt2HByVsjAOTWiuKDB0"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-15",
+  "server": "168.113.252.102",
+  "server_port": 9831,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "dl.google.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "qq"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "bnRIb3Er1i-K6NGGByCO9UbGfOvu43ZoiK7ulPd1SzU",
+    "short_id": "aa"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-16",
+  "server": "176.108.241.243",
+  "server_port": 9882,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "dl.google.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "random"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "bnRIb3Er1i-K6NGGByCO9UbGfOvu43ZoiK7ulPd1SzU"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-17",
+  "server": "176.109.106.170",
+  "server_port": 9872,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "dl.google.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "qq"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "sm3E3hjmT6_Gmg_O9rBz4nfXYrHpnl6-LvcCp6T6_xc",
+    "short_id": "aa"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-18",
+  "server": "176.108.240.65",
+  "server_port": 9889,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "dl.google.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "qq"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "ycPIUcY6ci2yi7YA_OHc20e4gzxEdJTqpmeShxSuHRU",
+    "short_id": "aabb"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-19",
+  "server": "45.132.179.211",
+  "server_port": 9872,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "dl.google.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "qq"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "sm3E3hjmT6_Gmg_O9rBz4nfXYrHpnl6-LvcCp6T6_xc",
+    "short_id": "aa"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-20",
+  "server": "168.113.252.93",
+  "server_port": 9892,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "dl.google.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "qq"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "ycPIUcY6ci2yi7YA_OHc20e4gzxEdJTqpmeShxSuHRU",
+    "short_id": "aabbccdd"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-21",
+  "server": "176.108.246.58",
+  "server_port": 9880,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "dl.google.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "random"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "bnRIb3Er1i-K6NGGByCO9UbGfOvu43ZoiK7ulPd1SzU"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-22",
+  "server": "82.202.141.124",
+  "server_port": 9881,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "dl.google.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "qq"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "Dfgu8Ey0M8Hz4gXGZAwQ3H9jLt2HByVsjAOTWiuKDB0",
+    "short_id": "aabbccdd"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-23",
+  "server": "45.132.179.135",
+  "server_port": 9889,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "dl.google.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "qq"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "ycPIUcY6ci2yi7YA_OHc20e4gzxEdJTqpmeShxSuHRU",
+    "short_id": "aabb"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-24",
+  "server": "176.108.245.144",
+  "server_port": 9892,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "amd.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "qq"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "Dfgu8Ey0M8Hz4gXGZAwQ3H9jLt2HByVsjAOTWiuKDB0"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-25",
+  "server": "45.132.179.211",
+  "server_port": 9894,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "dl.google.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "qq"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "sm3E3hjmT6_Gmg_O9rBz4nfXYrHpnl6-LvcCp6T6_xc"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-26",
+  "server": "176.108.243.63",
+  "server_port": 9892,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "dl.google.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "qq"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "Dfgu8Ey0M8Hz4gXGZAwQ3H9jLt2HByVsjAOTWiuKDB0",
+    "short_id": "aa"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-27",
+  "server": "176.108.246.13",
+  "server_port": 9831,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "dl.google.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "qq"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "bnRIb3Er1i-K6NGGByCO9UbGfOvu43ZoiK7ulPd1SzU",
+    "short_id": "aabb"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-28",
+  "server": "176.108.245.144",
+  "server_port": 9882,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "amd.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "qq"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "bnRIb3Er1i-K6NGGByCO9UbGfOvu43ZoiK7ulPd1SzU",
+    "short_id": "aabb"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-29",
+  "server": "176.108.245.131",
+  "server_port": 9880,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "dl.google.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "chrome"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "bnRIb3Er1i-K6NGGByCO9UbGfOvu43ZoiK7ulPd1SzU",
+    "short_id": "aabbccdd"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ },
+ {
+  "type": "vless",
+  "tag": "srv-30",
+  "server": "176.108.245.144",
+  "server_port": 9882,
+  "uuid": "de3bb1d2-cb03-4c0c-af33-bdc7c367478b",
+  "packet_encoding": "xudp",
+  "tls": {
+   "enabled": true,
+   "server_name": "amd.com",
+   "utls": {
+    "enabled": true,
+    "fingerprint": "qq"
+   },
+   "reality": {
+    "enabled": true,
+    "public_key": "bnRIb3Er1i-K6NGGByCO9UbGfOvu43ZoiK7ulPd1SzU"
+   }
+  },
+  "transport": {
+   "type": "grpc",
+   "service_name": "grpc-tunnel"
+  }
+ }
+]
